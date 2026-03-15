@@ -206,8 +206,7 @@ CREATE TABLE news_sentiment (
 
 );
 ---
-
-# ⚡ Real-Time Streaming
+⚡ Real-Time Streaming
 
 ## Kafka Streaming
 
