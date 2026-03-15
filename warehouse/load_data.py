@@ -6,8 +6,8 @@ INPUT_FILE = "data/news_sentiment.json"
 
 conn = psycopg2.connect(
     host="localhost",
-    database="financial_news",
-    user="postgres",
+    database="financial_news_batch",
+    user="tahseenanwer",
     password=""
 )
 

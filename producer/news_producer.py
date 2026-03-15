@@ -2,17 +2,33 @@ import feedparser
 import json
 import os
 from datetime import datetime
+from kafka import KafkaProducer
 
-# Google News RSS feed
+# -----------------------------
+# RSS Configuration
+# -----------------------------
 RSS_URL = "https://news.google.com/rss/search?q=stock+market"
 
-# Data storage path
+# -----------------------------
+# Kafka Configuration
+# -----------------------------
+KAFKA_TOPIC = "financial-news"
+KAFKA_SERVER = "localhost:9092"
+
+producer = KafkaProducer(
+    bootstrap_servers=KAFKA_SERVER,
+    value_serializer=lambda v: json.dumps(v).encode("utf-8")
+)
+
+# -----------------------------
+# Local Backup Storage
+# -----------------------------
 DATA_PATH = "data/raw_news.json"
 
 
 def load_existing_data():
     """
-    Load existing dataset and return titles + data
+    Load existing dataset to prevent duplicates
     """
 
     if not os.path.exists(DATA_PATH):
@@ -38,7 +54,7 @@ def fetch_news(existing_titles):
     feed = feedparser.parse(RSS_URL)
 
     new_articles = []
-    seen_titles = set()  # Prevent duplicates within the same run
+    seen_titles = set()
 
     for entry in feed.entries:
 
@@ -46,7 +62,6 @@ def fetch_news(existing_titles):
         link = entry.get("link", "")
         published = entry.get("published", "")
 
-        # Skip duplicates across runs OR within this run
         if title in existing_titles or title in seen_titles:
             continue
 
@@ -59,6 +74,13 @@ def fetch_news(existing_titles):
             "ingestion_time": datetime.utcnow().isoformat()
         }
 
+        # -----------------------------
+        # Send to Kafka
+        # -----------------------------
+        producer.send(KAFKA_TOPIC, value=article).get(timeout=10)
+
+        print("Sent to Kafka:", title)
+
         new_articles.append(article)
 
     return new_articles
@@ -66,7 +88,7 @@ def fetch_news(existing_titles):
 
 def save_news(data):
     """
-    Save dataset to JSON file
+    Save dataset locally as backup
     """
 
     os.makedirs("data", exist_ok=True)
@@ -79,7 +101,7 @@ def save_news(data):
 
 def pretty_print(news_list):
     """
-    Print sample articles
+    Print sample records
     """
 
     if not news_list:
@@ -97,23 +119,24 @@ def main():
 
     print("\nCollecting financial news...\n")
 
-    # Load existing dataset
     existing_titles, existing_data = load_existing_data()
 
-    # Fetch new articles
     new_articles = fetch_news(existing_titles)
 
-    # Combine datasets
     combined_data = existing_data + new_articles
 
-    # Save updated dataset
     save_news(combined_data)
 
     print("\nNew articles added:", len(new_articles))
     print("Total dataset size:", len(combined_data))
 
-    # Print sample
     pretty_print(new_articles)
+
+    # -----------------------------
+    # Important: ensure Kafka sends all messages
+    # -----------------------------
+    producer.flush()
+    producer.close()
 
 
 if __name__ == "__main__":
