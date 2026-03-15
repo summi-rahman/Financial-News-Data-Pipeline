@@ -1,6 +1,6 @@
 # 📈 Financial News Data Pipeline
 
-A real-time financial news **data engineering pipeline** that collects market news, extracts companies mentioned in articles, performs sentiment analysis using **FinBERT**, and stores structured data in **PostgreSQL** for analytics and visualization.
+A real-time financial news **data engineering pipeline** that collects market news, performs sentiment analysis using **FinBERT**, and stores structured data in **PostgreSQL** for analytics and visualization.
 
 The project demonstrates both **batch ETL pipelines** and **real-time streaming pipelines** using **Kafka** and **Spark**.
 
@@ -10,23 +10,23 @@ The project demonstrates both **batch ETL pipelines** and **real-time streaming 
 
 ## Batch Pipeline
 
+```
 Google News RSS
 ↓
 News Producer (Python)
 ↓
 Raw News Storage (JSON)
 ↓
-Company Extraction (spaCy + Alias Matching)
-↓
 Sentiment Analysis (FinBERT)
 ↓
 PostgreSQL Data Warehouse
 ↓
 Streamlit Dashboard
-
+```
 
 ## Streaming Pipeline (Kafka)
 
+```
 Google News RSS
 ↓
 Kafka Producer
@@ -40,10 +40,11 @@ FinBERT Sentiment Analysis
 PostgreSQL
 ↓
 Streamlit Dashboard
-
+```
 
 ## Streaming Pipeline (Kafka + Spark)
 
+```
 Google News RSS
 ↓
 Kafka Producer
@@ -57,48 +58,52 @@ FinBERT Sentiment Analysis
 PostgreSQL
 ↓
 Streamlit Dashboard
-
+```
 
 ---
 
 # 🚀 Features
 
-- Automated financial news ingestion
-- Company name and ticker extraction
-- NLP-based sentiment analysis using **FinBERT**
-- Structured storage in **PostgreSQL**
-- Batch **ETL pipeline**
-- Real-time **Kafka streaming pipeline**
-- **Spark Structured Streaming** processing
-- Interactive **Streamlit dashboard**
-- Modular and scalable **data engineering architecture**
+* Automated financial news ingestion
+* NLP-based sentiment analysis using **FinBERT**
+* Structured storage in **PostgreSQL**
+* Batch **ETL pipeline**
+* Real-time **Kafka streaming pipeline**
+* **Spark Structured Streaming** processing
+* Interactive **Streamlit dashboard**
+* Modular and scalable **data engineering architecture**
 
 ---
 
 # 🧰 Tech Stack
 
 ## Programming
-- Python
+
+* Python
 
 ## NLP / Machine Learning
-- spaCy
-- Transformers (FinBERT)
-- PyTorch
+
+* Transformers (FinBERT)
+* PyTorch
 
 ## Data Engineering
-- Kafka
-- PySpark
-- PostgreSQL
+
+* Kafka
+* PySpark
+* PostgreSQL
 
 ## Visualization
-- Streamlit
-- Plotly
+
+* Streamlit
+* Plotly
 
 ## Infrastructure
-- Docker
+
+* Docker
 
 ---
-## 📂 Project Structure
+
+# 📂 Project Structure
 
 ```
 Financial-News-Data-Pipeline
@@ -119,8 +124,6 @@ Financial-News-Data-Pipeline
 │   └── news_consumer.py
 │
 ├── processor
-│   ├── extract_companies.py
-│   ├── load_companies.py
 │   └── sentiment_analysis.py
 │
 ├── streaming
@@ -136,9 +139,9 @@ Financial-News-Data-Pipeline
 
 ---
 
-## ⚙️ Pipeline Steps
+# ⚙️ Pipeline Steps
 
-### 1️⃣ Collect News
+## 1️⃣ Collect News
 
 ```bash
 python producer/news_producer.py
@@ -154,27 +157,7 @@ data/raw_news.json
 
 ---
 
-### 2️⃣ Extract Companies
-
-```bash
-python processor/extract_companies.py
-```
-
-Extracts company names and tickers using:
-
-* Alias dictionary
-* Regex ticker detection
-* spaCy Named Entity Recognition (NER)
-
-**Output**
-
-```
-data/company_news.json
-```
-
----
-
-### 3️⃣ Sentiment Analysis
+## 2️⃣ Sentiment Analysis
 
 ```bash
 python processor/sentiment_analysis.py
@@ -194,7 +177,7 @@ data/news_sentiment.json
 
 ---
 
-### 4️⃣ Load Data into PostgreSQL
+## 3️⃣ Load Data into PostgreSQL
 
 ```bash
 python warehouse/load_data.py
@@ -270,6 +253,7 @@ The dashboard displays:
 
 # 🔮 Future Improvements
 
+* Company name and ticker extraction from financial news
 * Real-time company sentiment aggregation
 * Kafka message monitoring
 * Airflow pipeline orchestration
