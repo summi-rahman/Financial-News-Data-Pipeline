@@ -4,9 +4,8 @@ A real-time financial news data pipeline that collects market news, extracts com
 
 ---
 
-# Project Architecture
-
-News Source (Google News RSS)
+## Project Architecture
+Google News RSS
 ↓
 News Producer (Python)
 ↓
@@ -16,12 +15,22 @@ Company Extraction (spaCy + Alias Matching)
 ↓
 Sentiment Analysis (FinBERT)
 ↓
-Data Warehouse (PostgreSQL)
+PostgreSQL Data Warehouse
 ↓
-Dashboard (Streamlit)
+Streamlit Dashboard
 
-Future Extension:
-Kafka → Spark Streaming → PostgreSQL
+
+## Future Extension
+
+Kafka Producer
+↓
+Kafka Topic
+↓
+Spark Streaming
+↓
+PostgreSQL
+↓
+Streamlit Dashboard
 
 ---
 
