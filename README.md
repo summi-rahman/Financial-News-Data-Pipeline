@@ -98,9 +98,9 @@ Streamlit Dashboard
 - Docker
 
 ---
+## 📂 Project Structure
 
-# 📂 Project Structure
-
+```
 Financial-News-Data-Pipeline
 │
 ├── dashboard
@@ -132,112 +132,156 @@ Financial-News-Data-Pipeline
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 
-# ⚙️ Pipeline Steps
+## ⚙️ Pipeline Steps
 
-## 1️⃣ Collect News
+### 1️⃣ Collect News
 
 ```bash
 python producer/news_producer.py
+```
 
-Collects financial news headlines from the Google News RSS feed.
+Collects financial news headlines from the **Google News RSS feed**.
 
-Output
+**Output**
+
+```
 data/raw_news.json
-2️⃣ Extract Companies
+```
+
+---
+
+### 2️⃣ Extract Companies
+
+```bash
 python processor/extract_companies.py
+```
 
 Extracts company names and tickers using:
 
-Alias dictionary
+* Alias dictionary
+* Regex ticker detection
+* spaCy Named Entity Recognition (NER)
 
-Regex ticker detection
+**Output**
 
-spaCy Named Entity Recognition (NER)
-
-Output
-
+```
 data/company_news.json
-3️⃣ Sentiment Analysis
+```
+
+---
+
+### 3️⃣ Sentiment Analysis
+
+```bash
 python processor/sentiment_analysis.py
+```
 
-Uses FinBERT to classify sentiment:
+Uses **FinBERT** to classify sentiment:
 
-Positive
+* Positive
+* Negative
+* Neutral
 
-Negative
+**Output**
 
-Neutral
-
-Output
-
+```
 data/news_sentiment.json
-4️⃣ Load Data into PostgreSQL
+```
+
+---
+
+### 4️⃣ Load Data into PostgreSQL
+
+```bash
 python warehouse/load_data.py
+```
 
-Stores structured financial news sentiment data in the PostgreSQL data warehouse.
+Stores structured financial news sentiment data in the **PostgreSQL data warehouse**.
 
-⚡ Real-Time Streaming
-Kafka Streaming
+---
+
+# ⚡ Real-Time Streaming
+
+## Kafka Streaming
 
 Start Kafka services:
 
+```bash
 docker-compose up -d
+```
 
 Run the producer:
 
+```bash
 python producer/news_producer.py
+```
 
 Run the Kafka consumer:
 
+```bash
 python consumer/news_consumer.py
-Spark Streaming
+```
+
+---
+
+## Spark Streaming
 
 Run Spark Structured Streaming:
 
+```bash
 python streaming/spark_stream.py
+```
 
-Spark consumes Kafka messages, runs FinBERT sentiment analysis, and writes results to PostgreSQL.
+Spark consumes Kafka messages, runs **FinBERT sentiment analysis**, and writes results to **PostgreSQL**.
 
-📊 Dashboard
+---
+
+# 📊 Dashboard
 
 Run the Streamlit dashboard:
 
+```bash
 streamlit run dashboard/app.py
+```
 
 The dashboard displays:
 
-Total news count
+* Total news count
+* Sentiment distribution
+* Latest financial news headlines
 
-Sentiment distribution
+---
 
-Latest financial news headlines
+# 🧾 Example Output
 
-🧾 Example Output
+```json
 {
-"title": "Apple stock rises after earnings beat expectations",
-"sentiment": "positive",
-"score": 0.91
+  "title": "Apple stock rises after earnings beat expectations",
+  "sentiment": "positive",
+  "score": 0.91
 }
-🔮 Future Improvements
+```
 
-Real-time company sentiment aggregation
+---
 
-Kafka message monitoring
+# 🔮 Future Improvements
 
-Airflow pipeline orchestration
+* Real-time company sentiment aggregation
+* Kafka message monitoring
+* Airflow pipeline orchestration
+* Real-time stock sentiment alerts
+* Advanced financial analytics dashboard
+* CI/CD deployment pipeline
 
-Real-time stock sentiment alerts
+---
 
-Advanced financial analytics dashboard
+# 👩‍💻 Author
 
-CI/CD deployment pipeline
-
-👩‍💻 Author
-
-Sumaiya Rahman
+**Sumaiya Rahman**
 
 Data Scientist | Machine Learning | Data Engineering
+
