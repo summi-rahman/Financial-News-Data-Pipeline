@@ -1,10 +1,10 @@
-Financial News Data Pipeline
+📈 Financial News Data Pipeline
 
 A real-time financial news data engineering pipeline that collects market news, extracts companies mentioned in articles, performs sentiment analysis using FinBERT, and stores structured data in PostgreSQL for analytics and visualization.
 
 The project demonstrates both batch ETL pipelines and real-time streaming pipelines using Kafka and Spark.
 
-Project Architecture
+🏗 Project Architecture
 Batch Pipeline
 Google News RSS
       ↓
@@ -47,13 +47,13 @@ FinBERT Sentiment Analysis
 PostgreSQL
       ↓
 Streamlit Dashboard
-Features
+🚀 Features
 
 Automated financial news ingestion
 
 Company name and ticker extraction
 
-NLP based sentiment analysis using FinBERT
+NLP-based sentiment analysis using FinBERT
 
 Structured storage in PostgreSQL
 
@@ -61,14 +61,13 @@ Batch ETL pipeline
 
 Real-time Kafka streaming pipeline
 
-Spark structured streaming processing
+Spark Structured Streaming processing
 
 Interactive Streamlit dashboard
 
-Modular and scalable data architecture
+Modular and scalable data engineering architecture
 
-Tech Stack
-
+🧰 Tech Stack
 Programming
 
 Python
@@ -99,7 +98,7 @@ Infrastructure
 
 Docker
 
-Project Structure
+📂 Project Structure
 Financial-News-Data-Pipeline
 │
 ├── dashboard
@@ -131,13 +130,13 @@ Financial-News-Data-Pipeline
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
-Pipeline Steps
+⚙️ Pipeline Steps
 1️⃣ Collect News
 python producer/news_producer.py
 
-Collects financial news headlines from Google News RSS feed.
+Collects financial news headlines from the Google News RSS feed.
 
-Output:
+Output
 
 data/raw_news.json
 2️⃣ Extract Companies
@@ -149,9 +148,9 @@ Alias dictionary
 
 Regex ticker detection
 
-spaCy Named Entity Recognition
+spaCy Named Entity Recognition (NER)
 
-Output:
+Output
 
 data/company_news.json
 3️⃣ Sentiment Analysis
@@ -165,37 +164,37 @@ Negative
 
 Neutral
 
-Output:
+Output
 
 data/news_sentiment.json
 4️⃣ Load Data into PostgreSQL
 python warehouse/load_data.py
 
-Stores structured financial news sentiment data in PostgreSQL warehouse.
+Stores structured financial news sentiment data in the PostgreSQL data warehouse.
 
-Real-Time Streaming
+⚡ Real-Time Streaming
 Kafka Streaming
 
-Start Kafka:
+Start Kafka services:
 
 docker-compose up -d
 
-Run producer:
+Run the producer:
 
 python producer/news_producer.py
 
-Run consumer:
+Run the Kafka consumer:
 
 python consumer/news_consumer.py
 Spark Streaming
 
-Run Spark structured streaming:
+Run Spark Structured Streaming:
 
 python streaming/spark_stream.py
 
 Spark consumes Kafka messages, runs FinBERT sentiment analysis, and writes results to PostgreSQL.
 
-Dashboard
+📊 Dashboard
 
 Run the Streamlit dashboard:
 
@@ -209,13 +208,13 @@ Sentiment distribution
 
 Latest financial news headlines
 
-Example Output
+🧾 Example Output
 {
-"title": "Apple stock rises after earnings beat expectations",
-"sentiment": "positive",
-"score": 0.91
+  "title": "Apple stock rises after earnings beat expectations",
+  "sentiment": "positive",
+  "score": 0.91
 }
-Future Improvements
+🔮 Future Improvements
 
 Real-time company sentiment aggregation
 
@@ -229,7 +228,7 @@ Advanced financial analytics dashboard
 
 CI/CD deployment pipeline
 
-Author
+👩‍💻 Author
 
 Sumaiya Rahman
 
