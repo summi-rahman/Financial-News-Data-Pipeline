@@ -27,14 +27,14 @@ Kafka Producer → Kafka Topic → Spark Streaming → PostgreSQL → Streamlit 
 
 # Tech Stack
 
-Python
-spaCy
-Transformers (FinBERT)
-PostgreSQL
-Streamlit
-Kafka (planned)
-PySpark (planned)
-Docker (planned)
+*Python
+*spaCy
+*Transformers (FinBERT)
+*PostgreSQL
+*Streamlit
+*Kafka (planned)
+*PySpark (planned)
+*Docker (planned)
 
 ---
 
