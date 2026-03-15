@@ -1,0 +1,70 @@
+# ---------------------------
+# Python cache
+# ---------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# ---------------------------
+# Virtual environments
+# ---------------------------
+venv/
+env/
+ENV/
+.venv/
+
+# ---------------------------
+# Environment variables
+# ---------------------------
+.env
+
+# ---------------------------
+# OS files
+# ---------------------------
+.DS_Store
+Thumbs.db
+
+# ---------------------------
+# Logs
+# ---------------------------
+logs/
+*.log
+
+# ---------------------------
+# Data files (large datasets)
+# ---------------------------
+data/*.json
+data/*.csv
+data/*.parquet
+
+# keep folder but ignore files
+!data/.gitkeep
+
+# ---------------------------
+# Model downloads (HuggingFace / FinBERT)
+# ---------------------------
+.cache/
+models/
+
+# ---------------------------
+# Jupyter notebooks checkpoints
+# ---------------------------
+.ipynb_checkpoints/
+
+# ---------------------------
+# VSCode settings
+# ---------------------------
+.vscode/
+
+# ---------------------------
+# Spark temporary files
+# ---------------------------
+spark-warehouse/
+metastore_db/
+
+# ---------------------------
+# Docker
+# ---------------------------
+*.tar
+*.gz
