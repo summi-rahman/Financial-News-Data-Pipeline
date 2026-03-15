@@ -187,6 +187,27 @@ Stores structured financial news sentiment data in the **PostgreSQL data warehou
 
 ---
 
+
+# 🗄 Database Schema
+
+The processed financial news sentiment data is stored in a **PostgreSQL data warehouse** for querying and analytics.
+
+### Table: `news_sentiment`
+
+```sql
+CREATE TABLE news_sentiment (
+
+    id SERIAL PRIMARY KEY,
+    company TEXT,
+    title TEXT,
+    sentiment TEXT,
+    score FLOAT,
+    published TIMESTAMP,
+    source_url TEXT
+
+);
+```
+---
 # ⚡ Real-Time Streaming
 
 ## Kafka Streaming
