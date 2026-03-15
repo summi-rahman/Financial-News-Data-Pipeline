@@ -1,104 +1,106 @@
-📈 Financial News Data Pipeline
+# 📈 Financial News Data Pipeline
 
-A real-time financial news data engineering pipeline that collects market news, extracts companies mentioned in articles, performs sentiment analysis using FinBERT, and stores structured data in PostgreSQL for analytics and visualization.
+A real-time financial news **data engineering pipeline** that collects market news, extracts companies mentioned in articles, performs sentiment analysis using **FinBERT**, and stores structured data in **PostgreSQL** for analytics and visualization.
 
-The project demonstrates both batch ETL pipelines and real-time streaming pipelines using Kafka and Spark.
+The project demonstrates both **batch ETL pipelines** and **real-time streaming pipelines** using **Kafka** and **Spark**.
 
-🏗 Project Architecture
-Batch Pipeline
+---
+
+# 🏗 Project Architecture
+
+## Batch Pipeline
+
 Google News RSS
-      ↓
+↓
 News Producer (Python)
-      ↓
+↓
 Raw News Storage (JSON)
-      ↓
+↓
 Company Extraction (spaCy + Alias Matching)
-      ↓
+↓
 Sentiment Analysis (FinBERT)
-      ↓
+↓
 PostgreSQL Data Warehouse
-      ↓
+↓
 Streamlit Dashboard
-Streaming Pipeline (Kafka)
+
+
+## Streaming Pipeline (Kafka)
+
 Google News RSS
-      ↓
+↓
 Kafka Producer
-      ↓
+↓
 Kafka Topic
-      ↓
+↓
 Kafka Consumer
-      ↓
+↓
 FinBERT Sentiment Analysis
-      ↓
+↓
 PostgreSQL
-      ↓
+↓
 Streamlit Dashboard
-Streaming Pipeline (Kafka + Spark)
+
+
+## Streaming Pipeline (Kafka + Spark)
+
 Google News RSS
-      ↓
+↓
 Kafka Producer
-      ↓
+↓
 Kafka Topic
-      ↓
+↓
 Spark Structured Streaming
-      ↓
+↓
 FinBERT Sentiment Analysis
-      ↓
+↓
 PostgreSQL
-      ↓
+↓
 Streamlit Dashboard
-🚀 Features
 
-Automated financial news ingestion
 
-Company name and ticker extraction
+---
 
-NLP-based sentiment analysis using FinBERT
+# 🚀 Features
 
-Structured storage in PostgreSQL
+- Automated financial news ingestion
+- Company name and ticker extraction
+- NLP-based sentiment analysis using **FinBERT**
+- Structured storage in **PostgreSQL**
+- Batch **ETL pipeline**
+- Real-time **Kafka streaming pipeline**
+- **Spark Structured Streaming** processing
+- Interactive **Streamlit dashboard**
+- Modular and scalable **data engineering architecture**
 
-Batch ETL pipeline
+---
 
-Real-time Kafka streaming pipeline
+# 🧰 Tech Stack
 
-Spark Structured Streaming processing
+## Programming
+- Python
 
-Interactive Streamlit dashboard
+## NLP / Machine Learning
+- spaCy
+- Transformers (FinBERT)
+- PyTorch
 
-Modular and scalable data engineering architecture
+## Data Engineering
+- Kafka
+- PySpark
+- PostgreSQL
 
-🧰 Tech Stack
-Programming
+## Visualization
+- Streamlit
+- Plotly
 
-Python
+## Infrastructure
+- Docker
 
-NLP / Machine Learning
+---
 
-spaCy
+# 📂 Project Structure
 
-Transformers (FinBERT)
-
-PyTorch
-
-Data Engineering
-
-Kafka
-
-PySpark
-
-PostgreSQL
-
-Visualization
-
-Streamlit
-
-Plotly
-
-Infrastructure
-
-Docker
-
-📂 Project Structure
 Financial-News-Data-Pipeline
 │
 ├── dashboard
@@ -130,14 +132,20 @@ Financial-News-Data-Pipeline
 ├── docker-compose.yml
 ├── requirements.txt
 └── README.md
-⚙️ Pipeline Steps
-1️⃣ Collect News
+
+
+---
+
+# ⚙️ Pipeline Steps
+
+## 1️⃣ Collect News
+
+```bash
 python producer/news_producer.py
 
 Collects financial news headlines from the Google News RSS feed.
 
 Output
-
 data/raw_news.json
 2️⃣ Extract Companies
 python processor/extract_companies.py
@@ -210,9 +218,9 @@ Latest financial news headlines
 
 🧾 Example Output
 {
-  "title": "Apple stock rises after earnings beat expectations",
-  "sentiment": "positive",
-  "score": 0.91
+"title": "Apple stock rises after earnings beat expectations",
+"sentiment": "positive",
+"score": 0.91
 }
 🔮 Future Improvements
 
