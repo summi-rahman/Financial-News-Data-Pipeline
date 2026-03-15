@@ -239,15 +239,70 @@ The dashboard displays:
 
 ---
 
-# 🧾 Example Output
+# 📄 Expected Output
+
+After running the pipeline, the following JSON files are generated inside the **data/** directory.
+
+---
+
+## 1️⃣ Raw News Data
+
+File: `data/raw_news.json`
+
+This file contains the **raw financial news headlines** collected from the Google News RSS feed.
+
+Example:
 
 ```json
-{
-  "title": "Apple stock rises after earnings beat expectations",
-  "sentiment": "positive",
-  "score": 0.91
-}
+[
+  {
+    "title": "Sensex Falls 3,800 Points This Week: Key Reasons Behind Stock Market Slide - Samco",
+    "link": "https://news.google.com/rss/articles/CBMivAFBVV95cUxOSUJDSElUaWhRU2dBLVhBNTdlWlREbHFaMzZhQUJOUEUtMEpvR3BuWVlFY21EZFdhcG9UVXVoX21SektXNDRJMy01TWZzQTdBVGQyWkRxVEdlVFplWkxkNTlwMXF3c3ZSNk9YMjBleEZ6TU5pdEV6Z2NPZzROSGN1SmNPU3FESXRjQ0NmQ3Fybk41TlBUNVlhVHpBLWN5Q0ppX1hYMEZETW9DOS1PUzh3STRvejR5TTliY3pQSQ?oc=5",
+    "published": "Fri, 13 Mar 2026 05:44:10 GMT",
+    "ingestion_time": "2026-03-15T12:41:03.456182"
+  }
+]
 ```
+
+Fields:
+
+* **title** → News headline
+* **link** → URL to the news article
+* **published** → Original publication timestamp
+* **ingestion_time** → Time when the pipeline ingested the news
+
+---
+
+## 2️⃣ News Sentiment Data
+
+File: `data/news_sentiment.json`
+
+This file contains financial news with **sentiment predictions generated using FinBERT**.
+
+Example:
+
+```json
+[
+  {
+    "title": "What the Iran War Really Means for the Stock Market - Barron's",
+    "link": "https://news.google.com/rss/articles/CBMicEFVX3lxTE9sZTllTkstaVBxaTN0eFRwOVgzYkh5eC11UTJEN2dEZmJLZ21ZZkFUSFpPSWVtYl9yYjVYSkhrRFd5TTF5OFJOYmNTY3JSODdCYzltbHZXa1hYQ1RRM29aU1l5UG51bGxFbEpNTTdDZWs?oc=5",
+    "published": "Wed, 11 Mar 2026 17:57:00 GMT",
+    "sentiment": "neutral",
+    "score": 0.9260004162788391
+  }
+]
+```
+
+Fields:
+
+* **title** → News headline
+* **link** → URL to the news article
+* **published** → Original publication timestamp
+* **sentiment** → Predicted sentiment (`positive`, `negative`, `neutral`)
+* **score** → Confidence score from the FinBERT model
+
+---
+
 
 ---
 
